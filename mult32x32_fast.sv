@@ -22,7 +22,7 @@ module mult32x32_fast (
 		.clk(clk),
 		.reset(reset),
 		.start(start),
-		.a_msb_is_0(a_msw_is_0),
+		.a_msw_is_0(a_msw_is_0),
 		.b_msw_is_0(b_msw_is_0),
 		.busy(busy),
 		.a_sel(a_sel),
@@ -43,7 +43,7 @@ module mult32x32_fast (
 		.shift_sel(shift_sel),
 		.upd_prod(upd_prod),
 		.clr_prod(clr_prod),
-		.a_msb_is_0(a_msw_is_0),
+		.a_msw_is_0(a_msw_is_0),
 		.b_msw_is_0(b_msw_is_0),
 		.product(product)
 	);

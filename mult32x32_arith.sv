@@ -39,8 +39,8 @@ module mult32x32_arith (
 			1'b0: a_out = a[31:16];
 		endcase
 		case(b_sel)
-			1'b1: b_out = a[15:0];
-			1'b0: b_out = a[31:16];
+			1'b1: b_out = b[15:0];
+			1'b0: b_out = b[31:16];
 		endcase
 		
 		mul_out_32 = a_out*b_out;

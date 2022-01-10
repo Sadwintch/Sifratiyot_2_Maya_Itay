@@ -44,13 +44,13 @@ typedef enum
 			A: begin
 				if(start == 1'b0) begin
 					busy = 1'b0;
+					upd_prod = 1'b0;
 				end
 				else begin
 					next_state = B;
-					a_sel = 1'b0;
-					b_sel = 1'b0;
+					a_sel = 1'b1;
+					b_sel = 1'b1;
 					shift_sel = 2'b00;
-					upd_prod = 1'b0;
 					clr_prod = 1'b1;
 				end
 			end
@@ -63,22 +63,24 @@ typedef enum
 				end
 				else begin	
 					next_state = A;
+					upd_prod = 1'b1;
 				end
 			end
 			C: begin
 				next_state = D;
 				a_sel = 1'b1;
 				b_sel = 1'b0;
-				shift_sel = 2'b10;
+				shift_sel = 2'b01;
 			end
 			D: begin
 				next_state = E;
-				a_sel = 1'b1;
-				b_sel = 1'b1;
-				shift_sel = 2'b11;
+				a_sel = 1'b0;
+				b_sel = 1'b0;
+				shift_sel = 2'b10;
 			end
 			E: begin
 				next_state = A;
+				upd_prod = 1'b0;
 			end
 		endcase
 	end

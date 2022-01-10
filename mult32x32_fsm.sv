@@ -43,13 +43,13 @@ module mult32x32_fsm (
 				if(start == 1'b0) begin
 					busy = 1'b0;
 					upd_prod = 1'b0;
-					clr_prod = 1'b1;
 				end
 				else begin
 					next_state = B;
 					a_sel = 1'b1;
 					b_sel = 1'b1;
 					shift_sel = 2'b00;
+					clr_prod = 1'b1;
 
 				end
 			end
@@ -73,6 +73,7 @@ module mult32x32_fsm (
 			end
 			E: begin
 				next_state = A;
+				upd_prod = 1'b0;
 			end
 		endcase
 	end

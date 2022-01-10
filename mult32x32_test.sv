@@ -25,20 +25,19 @@ module mult32x32_test;
 		start = 1'b0;
 		a = 0;
 		b = 0;
-		#4
+		#40
 		reset = 1'b0;
-		#1
+		#10
 		a = 32'hC46B736;
 		b = 32'h1302BF7F;
 		start = 1'b1;
-		#1
+		#10
 		start = 1'b0;
-		#1;
-		//waitng for busy to go down..?
+		#50;
 	end
 	
 	always begin
-		#1
+		#5
 		clk = ~clk;
 	end
 
