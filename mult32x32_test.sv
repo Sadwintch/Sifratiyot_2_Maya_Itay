@@ -25,19 +25,19 @@ module mult32x32_test;
 		start = 1'b0;
 		a = 0;
 		b = 0;
-		#40
+		#8
 		reset = 1'b0;
-		#10
+		#2
 		a = 32'hC46B736;
 		b = 32'h1302BF7F;
 		start = 1'b1;
-		#10
+		#2
 		start = 1'b0;
-		#50;
+		#10;
 	end
 	
 	always begin
-		#5
+		#2
 		clk = ~clk;
 	end
 

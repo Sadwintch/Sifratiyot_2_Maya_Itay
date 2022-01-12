@@ -26,25 +26,25 @@ module mult32x32_fast_test;
 		start = 1'b0;
 		a = 0;
 		b = 0;
-		#40
+		#16
 		reset = 1'b0;
-		#10
+		#4
 		a = 205961014;
 		b = 318947199;
 		start = 1'b1;
-		#10
+		#4
 		start = 1'b0;
-		#50
+		#20
 		a = ((205961014) << 16) >> 16; 
 		b = ((318947199) << 16) >> 16;
 		start = 1'b1;
-		#10
+		#4
 		start = 1'b0;
-		#10;
+		#20;
 	end
 	
 	always begin
-	#5
+	#2
 	clk = ~clk;
 	end
 

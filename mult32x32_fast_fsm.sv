@@ -36,51 +36,79 @@ typedef enum
 	always_comb begin
 	//Here are the defualts values:
 		next_state = current_state;
-		busy = 1'b1;
-		upd_prod = 1'b1;
+		busy = 1'b0;
 		clr_prod = 1'b0;
 	
 		case(current_state)
 			A: begin
 				if(start == 1'b0) begin
-					busy = 1'b0;
 					upd_prod = 1'b0;
 				end
 				else begin
 					next_state = B;
-					a_sel = 1'b1;
-					b_sel = 1'b1;
-					shift_sel = 2'b00;
 					clr_prod = 1'b1;
+					busy = 1'b0;
 				end
 			end
 			B: begin
-				if((a_msw_is_0==1'b0) && (b_msw_is_0==1'b0)) begin
-						next_state = C;
-						a_sel = 1'b0;
-						b_sel = 1'b1;
-						shift_sel = 2'b01;
-				end
-				else begin	
+				a_sel = 1'b1;
+				b_sel = 1'b1;
+				shift_sel = 2'b00;
+				
+				busy = 1'b1;
+				upd_prod = 1'b1;
+					
+				if((a_msw_is_0==1'b1) && (b_msw_is_0==1'b1)) begin
 					next_state = A;
-					upd_prod = 1'b1;
+
+				end
+				else if((a_msw_is_0==1'b1) && (b_msw_is_0==1'b0)) begin
+					next_state = D;
+				end
+				else begin
+					next_state = C;
+
 				end
 			end
 			C: begin
-				next_state = D;
+				a_sel = 1'b0;
+				b_sel = 1'b1;
+				shift_sel = 2'b01;
+				busy = 1'b1;
+				upd_prod = 1'b1;
+					
+				if((a_msw_is_0==1'b0) && (b_msw_is_0==1'b1)) begin
+					next_state = A;
+		
+				end
+				else begin
+					next_state = D;
+					
+				end
+			end
+			D: begin
 				a_sel = 1'b1;
 				b_sel = 1'b0;
 				shift_sel = 2'b01;
+				busy = 1'b1;
+				upd_prod = 1'b1;
+					
+				if((a_msw_is_0==1'b1) && (b_msw_is_0==1'b0)) begin
+					next_state = A;
+				end
+				else begin
+					next_state = E;
+					
+				end
 			end
-			D: begin
-				next_state = E;
+			E: begin
 				a_sel = 1'b0;
 				b_sel = 1'b0;
 				shift_sel = 2'b10;
-			end
-			E: begin
+				busy = 1'b1;
+				upd_prod = 1'b1;
 				next_state = A;
-				upd_prod = 1'b0;
+				
 			end
 		endcase
 	end

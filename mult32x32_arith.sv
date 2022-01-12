@@ -12,12 +12,12 @@ module mult32x32_arith (
     output logic [63:0] product  // Miltiplication product
 );
 
-	logic unsigned [15:0] a_out;
-	logic unsigned [15:0] b_out;
-	logic unsigned [31:0] mul_out_32;
-	logic unsigned [63:0] mul_32_to_64;
-	logic unsigned [63:0] shift_out;
-	logic unsigned [63:0] add_out;
+	logic [15:0] a_out;
+	logic [15:0] b_out;
+	logic [31:0] mul_out_32;
+	logic [63:0] mul_32_to_64;
+	logic [63:0] shift_out;
+	logic [63:0] add_out;
 
 	always_ff @(posedge clk, posedge reset) begin
 		if (reset == 1'b1) begin
