@@ -25,15 +25,15 @@ module mult32x32_test;
 		start = 1'b0;
 		a = 0;
 		b = 0;
-		#8
+		#16
 		reset = 1'b0;
-		#2
+		#4
 		a = 32'hC46B736;
 		b = 32'h1302BF7F;
 		start = 1'b1;
-		#2
+		#4
 		start = 1'b0;
-		#10;
+		#20;
 	end
 	
 	always begin
