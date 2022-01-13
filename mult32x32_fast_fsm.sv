@@ -36,13 +36,15 @@ typedef enum
 	always_comb begin
 	//Here are the defualts values:
 		next_state = current_state;
-		busy = 1'b0;
+		busy = 1'b1;
+		upd_prod = 1'b1;
 		clr_prod = 1'b0;
 	
 		case(current_state)
 			A: begin
 				if(start == 1'b0) begin
 					upd_prod = 1'b0;
+					busy = 1'b0;
 				end
 				else begin
 					next_state = B;
@@ -53,10 +55,7 @@ typedef enum
 			B: begin
 				a_sel = 1'b1;
 				b_sel = 1'b1;
-				shift_sel = 2'b00;
-				
-				busy = 1'b1;
-				upd_prod = 1'b1;
+				shift_sel = 2'b00;		
 					
 				if((a_msw_is_0==1'b1) && (b_msw_is_0==1'b1)) begin
 					next_state = A;
@@ -74,8 +73,6 @@ typedef enum
 				a_sel = 1'b0;
 				b_sel = 1'b1;
 				shift_sel = 2'b01;
-				busy = 1'b1;
-				upd_prod = 1'b1;
 					
 				if((a_msw_is_0==1'b0) && (b_msw_is_0==1'b1)) begin
 					next_state = A;
@@ -90,8 +87,6 @@ typedef enum
 				a_sel = 1'b1;
 				b_sel = 1'b0;
 				shift_sel = 2'b01;
-				busy = 1'b1;
-				upd_prod = 1'b1;
 					
 				if((a_msw_is_0==1'b1) && (b_msw_is_0==1'b0)) begin
 					next_state = A;
@@ -102,12 +97,10 @@ typedef enum
 				end
 			end
 			E: begin
+				next_state = A;
 				a_sel = 1'b0;
 				b_sel = 1'b0;
 				shift_sel = 2'b10;
-				busy = 1'b1;
-				upd_prod = 1'b1;
-				next_state = A;
 				
 			end
 		endcase
