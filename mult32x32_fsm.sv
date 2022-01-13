@@ -46,6 +46,7 @@ module mult32x32_fsm (
 				end
 				else begin
 					next_state = B;
+					upd_prod = 1'b0;
 					clr_prod = 1'b1;
 					busy = 1'b0;
 
